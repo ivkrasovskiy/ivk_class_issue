@@ -36,7 +36,8 @@ class Advert(Json_parserMixin, ColorizeMixin):
         super().__init__(mapping)
 
         if "location" in self.__dict__:
-            self.location = Json_parserMixin(self.location)
+            if isinstance(self.location, dict):
+                self.location = Json_parserMixin(self.location)
 
         self.color = super().repr_color_code
 
